@@ -21,17 +21,23 @@ export default function LocationSection() {
 
   useGSAP(
     () => {
-      gsap.from('.location-card', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-      });
+      gsap.fromTo(
+        '.location-card',
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
     },
     { scope: containerRef }
   );

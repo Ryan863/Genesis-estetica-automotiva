@@ -49,28 +49,40 @@ export default function Reviews() {
 
   useGSAP(
     () => {
-      gsap.from('.reviews-header', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-        },
-        y: 35,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-      });
+      gsap.fromTo(
+        '.reviews-header',
+        { y: 25, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
 
-      gsap.from('.review-card', {
-        scrollTrigger: {
-          trigger: '.reviews-grid',
-          start: 'top 80%',
-        },
-        y: 35,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-      });
+      gsap.fromTo(
+        '.review-card',
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
     },
     { scope: containerRef }
   );

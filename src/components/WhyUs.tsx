@@ -48,28 +48,40 @@ export default function WhyUs() {
 
   useGSAP(
     () => {
-      gsap.from('.why-left', {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 75%',
-        },
-        x: -40,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-      });
+      gsap.fromTo(
+        '.why-left',
+        { x: -30, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
 
-      gsap.from('.diff-card', {
-        scrollTrigger: {
-          trigger: '.diff-list',
-          start: 'top 80%',
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: 'power3.out',
-      });
+      gsap.fromTo(
+        '.diff-card',
+        { y: 25, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
     },
     { scope: sectionRef }
   );

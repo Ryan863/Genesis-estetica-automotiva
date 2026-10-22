@@ -24,7 +24,8 @@ export default function AuthorityMetrics() {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 85%',
+          start: 'top 90%',
+          once: true,
         },
         onUpdate: () => {
           if (count67Ref.current) {
@@ -34,17 +35,23 @@ export default function AuthorityMetrics() {
       });
 
       // Staggered reveal for metric cards
-      gsap.from('.metric-card', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 85%',
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power2.out',
-      });
+      gsap.fromTo(
+        '.metric-card',
+        { y: 25, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 90%',
+            once: true,
+          },
+        }
+      );
     },
     { scope: containerRef }
   );

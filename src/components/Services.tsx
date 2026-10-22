@@ -110,28 +110,40 @@ export default function Services() {
 
   useGSAP(
     () => {
-      gsap.from('.services-header', {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top 80%',
-        },
-        y: 35,
-        opacity: 0,
-        duration: 0.9,
-        ease: 'power3.out',
-      });
+      gsap.fromTo(
+        '.services-header',
+        { y: 25, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 90%',
+            once: true,
+          },
+        }
+      );
 
-      gsap.from('.service-card', {
-        scrollTrigger: {
-          trigger: '.services-grid',
-          start: 'top 80%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out',
-      });
+      gsap.fromTo(
+        '.service-card',
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          clearProps: 'opacity,transform',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            once: true,
+          },
+        }
+      );
     },
     { scope: sectionRef }
   );
